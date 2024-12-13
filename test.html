@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accordion Example</title>
+    <style>
+      .faqs {
+        width: 100%;
+        max-width: 600px;
+        margin: auto;
+      }
+      .accordion {
+        background-color: #f1f1f1;
+        color: #444;
+        cursor: pointer;
+        padding: 15px;
+        width: 100%;
+        text-align: left;
+        border: none;
+        outline: none;
+        transition: background-color 0.3s ease;
+        font-size: 16px;
+      }
+      .accordion.active {
+        background-color: #ccc;
+      }
+      .panel {
+        padding: 0 15px;
+        display: none;
+        background-color: white;
+        overflow: hidden;
+      }
+      .panel.active {
+        display: block;
+      }
+      .text_row p {
+        margin: 15px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="faqs">
+      <button class="accordion active">
+        Cybersecurity and Compliance Prioritization
+      </button>
+      <div class="panel active">
+        <div class="text_row">
+          <p>
+            Ensure compliance with industry standards like GDPR, HIPAA, and ISO.
+          </p>
+        </div>
+      </div>
+
+      <button class="accordion">Data Encryption</button>
+      <div class="panel">
+        <div class="text_row">
+          <p>
+            Implement robust encryption for sensitive data in transit and at
+            rest.
+          </p>
+        </div>
+      </div>
+
+      <button class="accordion">Access Control</button>
+      <div class="panel">
+        <div class="text_row">
+          <p>
+            Restrict access to authorized personnel using multi-factor
+            authentication.
+          </p>
+        </div>
+      </div>
+
+      <button class="accordion">Threat Detection</button>
+      <div class="panel">
+        <div class="text_row">
+          <p>
+            Utilize AI-driven tools for proactive detection of potential
+            threats.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // JavaScript for accordion functionality
+      document.addEventListener("DOMContentLoaded", () => {
+        const accordions = document.querySelectorAll(".accordion");
+
+        accordions.forEach((accordion) => {
+          accordion.addEventListener("click", function () {
+            // Close all other accordions
+            accordions.forEach((item) => {
+              if (item !== this) {
+                item.classList.remove("active");
+                item.nextElementSibling.style.display = "none";
+              }
+            });
+
+            // Toggle the clicked accordion
+            const panel = this.nextElementSibling;
+            if (this.classList.contains("active")) {
+              this.classList.remove("active");
+              panel.style.display = "none";
+            } else {
+              this.classList.add("active");
+              panel.style.display = "block";
+            }
+          });
+        });
+
+        // Ensure only the default open accordion is visible on load
+        const defaultOpenAccordion =
+          document.querySelector(".accordion.active");
+        if (defaultOpenAccordion) {
+          defaultOpenAccordion.nextElementSibling.style.display = "block";
+        }
+      });
+    </script>
+  </body>
+</html>
